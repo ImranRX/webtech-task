@@ -4,15 +4,15 @@
 <head>
     <style>
     .error {
-        color:Red;
+        color: red;
     }
 
     * {
-        background-color:lightblue;
+        background-color: lightblue;
         font-family: Arial, Helvetica, sans-serif;
 
     }
-     </style>
+    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,10 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // check if name only contains letters and whitespace
     $nc =strlen($name);
     if (!preg_match("/^[a-zA-Z-' ]*$/",$name)&&$nc>"2") {
-      $nameErr = " Cannot be empty. Contains at least two words
-      . Must start with a letter
-      . Can contain a-z, A-Z,
-      period, dash only.";
+      $nameErr = " Cannot be empty. Contains at least two words. Must start with a letter. Can contain a-z, A-Z, period, dash only.";
     }
   }
   
@@ -50,8 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = test_input($_POST["email"]);
     // check if e-mail address is well-formed
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $emailErr = "Cannot be empty
-       . Must be a valid email_address : anything@example.Com";
+      $emailErr = "Cannot be empty. Must be a valid email_address : anything@example.Com";
     }
   }
   if (empty($_POST["DOB"])) {
@@ -69,8 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $genderErr = "Gender is required";
   } else {
     $gender = test_input($_POST["gender"]);
-    $genderErr="At least one of them
-    must be selected";
+    $genderErr="At least one of them must be selected";
   }
   if (empty($_POST["degree"])) {
     $degreeErr= "Degree is required. you have to select at least two.";
@@ -87,8 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $BGErr = "Blood Group is required";
   } else {
     $BG = test_input($_POST["BG"]);
-    $BGErr="At least one of them
-    must be selected";
+    $BGErr="At least one of them must be selected";
   }
 
 }
@@ -119,19 +113,6 @@ function test_input($data) {
         <input type="radio" name="gender" value="other">Other
         <span class="error">* <?php echo $genderErr;?></span>
         <br><br>
-        Degree:
-        <br>
-        <input type="checkbox" name="degree[]" value="SSC">
-        <label for="vehicle1"> SSC</label><br>
-        <input type="checkbox" name="degree[]" value="HSC">
-        <label for="vehicle2">HSC</label><br>
-        <input type="checkbox" name="degree[]" value="BSc">
-        <label for="vehicle3">BSC</label><br>
-        <input type="checkbox" name="degree[]" value="MSc">
-        <label for="vehicle3">MSC</label><br>
-        <span class="error">* <?php echo $degreeErr;?></span>
-        <br><br>
-       
         Blood Group:
         <label for="BG">Blood Group:</label>
         <select id="BG" name="BG">
@@ -146,6 +127,18 @@ function test_input($data) {
             <option value="AB-">AB-</option>
         </select><span class="error">* <?php echo $BGErr;?></span>
         <br><br>
+        Degree:
+        <br>
+        <input type="checkbox" name="degree[]" value="SSC">
+        <label for="vehicle1"> SSC</label><br>
+        <input type="checkbox" name="degree[]" value="HSC">
+        <label for="vehicle2">HSC</label><br>
+        <input type="checkbox" name="degree[]" value="BSc">
+        <label for="vehicle3">BSC</label><br>
+        <input type="checkbox" name="degree[]" value="MSc">
+        <label for="vehicle3">MSC</label><br>
+        <span class="error">* <?php echo $degreeErr;?></span>
+        <br><br>
         <input type="submit" name="submit" value="Submit">
     </form>
 
@@ -155,13 +148,11 @@ echo "Name:  ".$name;
 echo "<br>";
 echo "Email: ".$email;
 echo "<br>";
-echo "Dath of Birth: ".$DOB;
-echo "<br>";
 echo "Dath of Birth: ".date("$DOB");
 echo "<br>";
 echo "Gender: ".$gender;
 echo "<br>";
-echo "Blood Group ".$BG;
+echo "Blood Group : ".$BG;
 echo "<br>";
 echo "Degree: ";
 $arrlength = count($degree);
